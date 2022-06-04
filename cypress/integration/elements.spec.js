@@ -27,13 +27,13 @@ describe('Work with basic elements', ()=>{
         cy.get('#resultado').should('have.text','Voltou!');
     });
 
-    it.only('Text Fields', ()=>{
+    it('Text Fields', ()=>{
         cy.get('#formNome').type('Cypress');
         cy.get('#formNome').should('have.value','Cypress');
+
         cy.get('[data-cy=dataSobrenome]').type('Test');
         cy.get('[data-cy=dataSobrenome]').should('have.value','Test');
-        cy.get('#formSexoMasc').click();
-        cy.get('#formSexoMasc').should('be.checked');
+        
         cy.get('#formComidaPizza').click();
         cy.get('#formComidaPizza').should('be.checked');
 
@@ -55,5 +55,17 @@ describe('Work with basic elements', ()=>{
             .clear()
             .type('Erro{selectall}Acerto', {delay: 100})
             .should('have.value','Acerto');
-    })
+    });
+
+    it('Radio Buttons', ()=>{
+        cy.get('#formSexoMasc')
+            .click()
+            .should('be.checked');
+
+        cy.get('#formSexoFem')
+            .should('not.be.checked');
+
+        cy.get("[name='formSexo']")
+            .should('have.length',2);
+    });
 })
