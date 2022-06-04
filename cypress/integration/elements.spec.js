@@ -90,4 +90,26 @@ describe('Work with basic elements', ()=>{
             .click({multiple:true})
             .should('have.length',4);
     });
+
+    it('Select', ()=>{
+        cy.get('[data-test=dataEscolaridade]')
+            .select('2o grau completo')
+            .should('have.value','2graucomp');
+        cy.get('[data-test=dataEscolaridade]')
+            .select('1graucomp')
+            .should('have.value','1graucomp');
+    });
+
+    it('Multiple Select', ()=>{
+        cy.get('[data-testid=dataEsportes]')
+            .select(['natacao', 'Corrida', 'nada'])
+            //.should('have.value', 'natacao;corrida');
+
+            // TODO Validar opções selecionadas
+            // TODO Validar as opções
+
+        cy.get('[data-testid=dataEsportes]')
+            .select('Vôlei')
+            .should('have.value','volei');
+    });
 })
