@@ -68,4 +68,26 @@ describe('Work with basic elements', ()=>{
         cy.get("[name='formSexo']")
             .should('have.length',2);
     });
+
+    it('Checkboxes', ()=>{
+        cy.get('#formComidaPizza')
+            .click()
+            .should('be.checked');
+
+        cy.get('#formComidaCarne')
+            .click()
+            .click()
+            .should('not.be.checked');
+
+        cy.get('#formComidaPizza')
+            .click()
+            .should('not.be.checked');
+
+        cy.get('[name=formComidaFavorita]')
+            .should('have.length',4);
+
+        cy.get('[name=formComidaFavorita]')
+            .click({multiple:true})
+            .should('have.length',4);
+    });
 })
