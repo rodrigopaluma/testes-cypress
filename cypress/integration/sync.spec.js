@@ -15,5 +15,15 @@ describe('Sincronismo', ()=>{
         cy.get('#novoCampo').should('not.exist');
         cy.get('#novoCampo').should('exist');
         cy.get('#novoCampo').type('Funciona');
+    });
+
+    it('Deve fazer Retrys',()=>{
+        cy.get('#novoCampo').should('not.exist')
+        cy.get('#buttonDelay').click();
+        cy.get('#novoCampo').should('not.exist')
+        
+        cy.get('#novoCampo')
+            .should('exist')
+            .type('Funciona');
     })
 })
