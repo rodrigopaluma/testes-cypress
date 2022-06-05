@@ -25,5 +25,23 @@ describe('Sincronismo', ()=>{
         cy.get('#novoCampo')
             .should('exist')
             .type('Funciona');
-    })
+    });
+
+    it('Uso do find',()=>{
+        cy.get('#buttonList').click();
+        cy.get('#lista li')
+            .find('span')
+            .should('contain','Item 1');
+        cy.get('#lista li span')
+            .should('contain','Item 2');
+    });
+
+    it('Uso do find via DOM',()=>{
+        cy.get('#buttonListDOM').click();
+        cy.get('#lista li')
+            .find('span')
+            .should('contain','Item 1');
+        cy.get('#lista li span')
+            .should('contain','Item 2');
+    });
 })
