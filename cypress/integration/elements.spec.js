@@ -98,18 +98,18 @@ describe('Work with basic elements', ()=>{
         cy.get('[data-test=dataEscolaridade]')
             .select('1graucomp')
             .should('have.value','1graucomp');
+        
+        // TODO Validar as opções do select
     });
 
     it('Multiple Select', ()=>{
         cy.get('[data-testid=dataEsportes]')
-            .select(['natacao', 'Corrida', 'nada'])
-            //.should('have.value', 'natacao;corrida');
+            .select(['natacao', 'Corrida', 'nada']);
 
-            // TODO Validar opções selecionadas
-            // TODO Validar as opções
+            // TODO Validar opções selecionadas com combo multiplo
 
         cy.get('[data-testid=dataEsportes]')
-            .select('Vôlei')
-            .should('have.value','volei');
+            .select(['natacao', 'Corrida', 'nada','Karate']);
+            //.should('have.value','Karate');
     });
 })
