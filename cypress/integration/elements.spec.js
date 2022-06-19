@@ -91,18 +91,27 @@ describe('Work with basic elements', ()=>{
             .should('have.length',4);
     });
 
-    it('Select', ()=>{
+    it.only('Select', ()=>{
         cy.get('[data-test=dataEscolaridade]')
             .select('2o grau completo')
             .should('have.value','2graucomp');
+
         cy.get('[data-test=dataEscolaridade]')
             .select('1graucomp')
             .should('have.value','1graucomp');
         
-        // TODO Validar as opções do select
+        // Validar as opções do select
+        cy.get('[data-test=dataEscolaridade] option').should('have.length', 8);
+        cy.get('[data-test=dataEscolaridade] option').then($arr => {
+            const values = [];
+            $arr.each(function(){
+                values.push(this.innerHTML);
+            })
+            expect(values).to.include.members(['Superior','Mestrado'])
+        })
     });
 
-    it('Multiple Select', ()=>{
+    it.only('Multiple Select', ()=>{
         cy.get('[data-testid=dataEsportes]')
             .select(['natacao', 'Corrida', 'nada']);
 
@@ -111,5 +120,13 @@ describe('Work with basic elements', ()=>{
         cy.get('[data-testid=dataEsportes]')
             .select(['natacao', 'Corrida', 'nada','Karate']);
             //.should('have.value','Karate');
+        
+        //cy.get('[data-testid=dataEsportes]').should('have.value',['nada','Karate']);
+        cy.get('[data-testid=dataEsportes]').then($el => {
+            expect($el.val()).to.be.deep.equal(['natacao', 'Corrida', 'Karate', 'nada']);
+            expect($el.val()).to.have.length(4)
+        });
+
+        cy.get('[data-testid=dataEsportes]').invoke('val').should('eql', ['natacao', 'Corrida', 'Karate', 'nada']);
     });
 })
