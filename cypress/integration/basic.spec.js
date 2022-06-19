@@ -4,7 +4,7 @@ describe('Cypress Basic', ()=>{
     it.only('Should visit a page and assert title', ()=>{
         cy.visit('https://wcaquino.me/cypress/componentes.html');
 
-        cy.pause();
+        //cy.pause();
         
         cy.title().should('be.equal','Campo de Treinamento');
         cy.title().should('contain','Campo').debug();
@@ -14,6 +14,11 @@ describe('Cypress Basic', ()=>{
             .and('contain','Campo');
 
         //TODO imprimir o title no console
+        cy.title().should(title => {
+            console.log(title)
+        });
+
+        
         //TODO escrever o title em um campo de texto
     });
 
