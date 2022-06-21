@@ -18,6 +18,7 @@ import './commands'
 
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
+require("cypress-xpath");
 
 // Prioridade de seletores do Cypress
 Cypress.SelectorPlayground.defaults({

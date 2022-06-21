@@ -29,4 +29,10 @@ Cypress.Commands.add('clickAlert', (locator, message)=>{
     cy.on('window:alert', msg => {
         expect(msg).to.eq(message);
     });
+});
+
+Cypress.Commands.add('visitSite', ()=>{
+    before(()=>{
+        cy.visit('https://wcaquino.me/cypress/componentes.html');
+    });
 })
