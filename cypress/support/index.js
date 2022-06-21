@@ -18,3 +18,8 @@ import './commands'
 
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
+
+// Prioridade de seletores do Cypress
+Cypress.SelectorPlayground.defaults({
+    selectorPriority: ['data-wc', 'id', 'class', 'attributes', 'data-cy', 'data-test', 'data-testid', 'tag', 'nth-child'],
+})
