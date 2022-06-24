@@ -1,6 +1,7 @@
 /// <reference types ="cypress" />
 
-import loc from './../support/locators'
+import loc from './../support/locators';
+import '../support/commandsConta'
 
 describe('Teste em nível funcional', () => {
     before(()=>{
@@ -19,17 +20,13 @@ describe('Teste em nível funcional', () => {
     }); */
 
     it('Cadastro de Conta', () => {
-        cy.get(loc.MENU.SETTINGS).click();
-        cy.get(loc.MENU.CONTAS).click();
-        cy.get(loc.CONTAS.NOME).type('Conta Corrente Bradesco', {delay:50});
-        cy.get(loc.CONTAS.BTN_SALVAR).click();
+        cy.navContas();
+        cy.createConta('Conta Corrente Bradesco');
         cy.get(loc.MESSAGE).should('contain', 'Conta inserida com sucesso');
     });
 
     it('Edição de Conta', () => {
-        //cy.clearData();
-        cy.get(loc.MENU.SETTINGS).click();
-        cy.get(loc.MENU.CONTAS).click();
+        cy.navContas();
         cy.xpath(loc.CONTAS.XP_BTN_ALTERAR).click();
         cy.get(loc.CONTAS.NOME)
             .clear()
@@ -37,4 +34,26 @@ describe('Teste em nível funcional', () => {
         cy.get(loc.CONTAS.BTN_SALVAR).click();
         cy.get(loc.MESSAGE).should('contain', 'Conta atualizada com sucesso');
     });
+
+    it('Should not create an account with same name', () => {
+        cy.navContas();
+        cy.get(loc.CONTAS.NOME)
+            .clear()
+            .type('Conta Corrente Bradesco - Editado', {delay:50});
+        cy.get(loc.CONTAS.BTN_SALVAR).click();
+        cy.get(loc.MESSAGE).should('contain', 'code 400');
+    });
+
+    it('Should create a transaction', () => {
+        cy.get(loc.MENU.MOVIMENTOS).click();
+        cy.get(loc.MOVIMENTOS.DESCRICAO).type('Descrição',{delay:50});
+        cy.get(loc.MOVIMENTOS.INTERESSADO).type('Eu Mesmo',{delay:50});
+        cy.get(loc.MOVIMENTOS.VALOR).type('500',{delay:50});
+        cy.get(loc.MOVIMENTOS.SALVAR).click();
+        cy.get(loc.MESSAGE).should('contain', 'sucesso');
+
+        //cy.clearData();
+    });
+
+    
 });

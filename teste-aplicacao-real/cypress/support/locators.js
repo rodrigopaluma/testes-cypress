@@ -19,7 +19,19 @@ const locators = {
         BTN_SALVAR: '.btn',
         XP_BTN_ALTERAR: "//table//td[contains(.,'Conta Corrente Bradesco')]/..//i[@class='far fa-edit']"
     },
-    MESSAGE: '.toast-message'
+    MESSAGE: '.toast-message',
+    MOVIMENTOS: {
+        T_RECEITA: '[data-test=tipo-receita]',
+        T_DESPESA: '[data-test=tipo-despesa]',
+        INICIO: '[data-test=data-transacao]',
+        PAGAMENTO: '[data-test=data-pagamento]',
+        DESCRICAO: '[data-test=descricao]',
+        VALOR: '[data-test=valor]',
+        INTERESSADO: '[data-test=envolvido]',
+        CONTA: '[data-test=conta]',
+        STATUS: '[data-test=status]',
+        SALVAR: '.btn-primary'
+    }
 
 }
 
