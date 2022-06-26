@@ -28,8 +28,8 @@ import loc from './locators';
 
 Cypress.Commands.add('login', (email, password) => {
     cy.visit('https://barrigareact.wcaquino.me/');
-    cy.get(loc.LOGIN.USER).type('rodrigo.paluma@gmail.com', {delay:100});
-    cy.get(loc.LOGIN.PASSWORD).type('CypressNow', {delay:100});
+    cy.get(loc.LOGIN.USER).type('rodrigo.paluma@gmail.com', {delay:30});
+    cy.get(loc.LOGIN.PASSWORD).type('CypressNow', {delay:30});
     cy.get(loc.LOGIN.BTN_LOGIN).click();
     cy.get(loc.MESSAGE).should('contain', 'Bem vindo');
 });
