@@ -34,7 +34,8 @@ const locators = {
     EXTRATO: {
         LINHAS: '.list-group > li',
         FN_XP_BUSCA_ELEMENTO: (nomeMovimento, valor) => `//span[contains(., '${nomeMovimento}')]/following-sibling::small[contains(., '${valor}')]`,
-        FN_XP_EXCLUIR_MOVIMENTO: nomeMovimento => `//span[contains(.,'${nomeMovimento}')]/../../..//i[@class='far fa-trash-alt']`
+        FN_XP_EXCLUIR_MOVIMENTO: nomeMovimento => `//span[contains(.,'${nomeMovimento}')]/../../..//i[@class='far fa-trash-alt']`,
+        FN_XP_EDITA_MOVIMENTO: nomeMovimento => `//span[contains(.,'${nomeMovimento}')]/../../..//i[@class='far fa-edit']`
     },
     SALDO: {
         FN_XP_SALDO_CONTA: nome => `//td[contains(., '${nome}')]/../td[2]`
