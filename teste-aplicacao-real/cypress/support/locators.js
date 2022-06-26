@@ -1,5 +1,4 @@
 const locators = {
-    // Login
     LOGIN: {
         USER: '[data-test=email]',
         PASSWORD: '[data-test=passwd]',
@@ -17,9 +16,9 @@ const locators = {
     CONTAS: {
         NOME: '[data-test=nome]',
         BTN_SALVAR: '.btn',
-        XP_BTN_ALTERAR: "//table//td[contains(.,'Conta Corrente Bradesco')]/..//i[@class='far fa-edit']"
+        XP_BTN_ALTERAR: "//table//td[contains(.,'Conta Corrente Bradesco')]/..//i[@class='far fa-edit']",
+        FN_XP_BTN_ALTERAR: nomeConta => `//table//td[contains(.,'${nomeConta}')]/..//i[@class='far fa-edit']`
     },
-    MESSAGE: '.toast-message',
     MOVIMENTOS: {
         T_RECEITA: '[data-test=tipo-receita]',
         T_DESPESA: '[data-test=tipo-despesa]',
@@ -31,7 +30,16 @@ const locators = {
         CONTA: '[data-test=conta]',
         STATUS: '[data-test=status]',
         SALVAR: '.btn-primary'
-    }
+    },
+    EXTRATO: {
+        LINHAS: '.list-group > li',
+        FN_XP_BUSCA_ELEMENTO: (nomeMovimento, valor) => `//span[contains(., '${nomeMovimento}')]/following-sibling::small[contains(., '${valor}')]`,
+        FN_XP_EXCLUIR_MOVIMENTO: nomeMovimento => `//span[contains(.,'${nomeMovimento}')]/../../..//i[@class='far fa-trash-alt']`
+    },
+    SALDO: {
+        FN_XP_SALDO_CONTA: nome => `//td[contains(., '${nome}')]/../td[2]`
+    },
+    MESSAGE: '.toast-message',
 
 }
 
