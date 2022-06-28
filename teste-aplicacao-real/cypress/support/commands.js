@@ -25,6 +25,7 @@
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
 
 import loc from './locators';
+import patio from './locatorsDss';
 
 Cypress.Commands.add('login', (email, password) => {
     cy.visit('https://barrigareact.wcaquino.me/');
@@ -34,7 +35,44 @@ Cypress.Commands.add('login', (email, password) => {
     cy.get(loc.MESSAGE).should('contain', 'Bem vindo');
 });
 
+Cypress.Commands.add('loginDss', (email, password) => {
+    cy.visit('http://localhost:4200/login');
+    cy.get(patio.LOGIN.USERNAME).type('rodrigo.paluma@nitryx.com', {delay:30});
+    cy.get(patio.LOGIN.PASSWORD).type('405070Ble', {delay:30});
+    cy.get(patio.LOGIN.DIVISION).click();
+    cy.get(patio.LOGIN.DIREITA).click();
+    cy.get(patio.LOGIN.BTN_LOGIN).click();
+    cy.url()
+      .should('be.equal', 'http://localhost:4200/ght')
+});
+
 Cypress.Commands.add('clearData', () => {
     cy.get(loc.MENU.SETTINGS).click();
     cy.get(loc.MENU.RESET).click();
+});
+
+Cypress.Commands.add('getToken', (user, password) => {
+    cy.request({
+        method: 'POST',
+        url: '/signin',
+        body: {
+            email: user,
+            senha: password,
+            redirecionar: false
+        }
+    }).its('body.token').should('not.be.empty')
+    .then(token => {
+        return token
+    })
+});
+
+Cypress.Commands.add('resetRest', ()=> {
+    cy.getToken('rodrigo.paluma@gmail.com','CypressNow').then(token => {
+        cy.request({
+            method: 'GET',
+            headers: { Authorization: `JWT ${token}` },
+            url: '/reset'
+        }).its('status').should('be.equal', 200)
+    })
+    
 })
