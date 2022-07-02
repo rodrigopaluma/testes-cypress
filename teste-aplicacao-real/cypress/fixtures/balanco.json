@@ -1,0 +1,16 @@
+{
+    "conta": "Conta Falsa",
+    "conta_id": 1260102,
+    "data_pagamento": "2022-07-02T03:00:00.000Z",
+    "data_transacao": "2022-07-02T03:00:00.000Z",
+    "descricao": "Movimentacao para exclusao",
+    "envolvido": "AAA",
+    "id": 1174531,
+    "observacao": null,
+    "parcelamento_id": null,
+    "status": true,
+    "tipo": "DESP",
+    "transferencia_id": null,
+    "usuario_id": 30951,
+    "valor": "1500.00"
+}
